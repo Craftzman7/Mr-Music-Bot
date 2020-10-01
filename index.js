@@ -10,7 +10,7 @@ const prefix = require(`./config.json`)
 console.log('Bot is launching please wait...');
 client.once('ready', () =>{ 
     console.log(`Logged in as ${client.user.tag} and am playing music in ${client.guilds.cache.size} servers!`)
-    client.user.setActivity('my developemt', {type: 'LISTENING'})
+    client.user.setActivity(`music in ${client.guilds.cache.size} servers!`, {type: 'PLAYING'})
 })
 
 client.on("message", async message => {
@@ -100,6 +100,7 @@ client.on("message", async message => {
       );
     serverQueue.songs = [];
     serverQueue.connection.dispatcher.end();
+    queue.delete(message.guild.id);
   }
   
   function play(guild, song) {
